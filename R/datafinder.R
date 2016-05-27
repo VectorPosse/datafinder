@@ -38,6 +38,11 @@ datafinder <- function(pkg, summary = TRUE) {
 
     # The names of the data sets occupy the third column of $results
     datalist <- data(package = pkg)$results[, 3]
+    if (length(datalist) == 0) {
+        stop("Package has no data frames.",
+             call. = FALSE)
+    }
+
 
     summary_vars <- function(i) {
         # The name of a data set in the output of data() often
@@ -74,6 +79,11 @@ datafinder <- function(pkg, summary = TRUE) {
     output <-
         do.call("rbind", lapply(1:length(datalist),  summary_vars))
 
+    detach_string <- paste("package", pkg, sep = ":")
+    detach(detach_string,
+           character.only = TRUE,
+           unload = TRUE)
+
     if (summary == FALSE) {
         return(output)
     }
@@ -84,6 +94,6 @@ datafinder <- function(pkg, summary = TRUE) {
             spread(Class, Count, fill = 0)
         return(output)
     }
-    detach_string <- paste("package", pkg, sep = ":")
-    detach(detach_string, character.only = TRUE, unload = TRUE)
+
+
 }
