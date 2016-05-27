@@ -9,22 +9,22 @@ datafinder(pkg, summary = TRUE)
 \arguments{
 \item{pkg}{The name of a package (as a character string in quotation marks).}
 
-\item{summary}{If summary is TRUE, each row of output will be a single dataframe,
-along with the number of each type of variable present. If summary is
-FALSE, each row of output will be a variable along with its type.}
+\item{summary}{If summary is TRUE (the default), each row of output will be
+a single dataframe listing the number of each type of variable present.
+If summary is FALSE, each row of output show the name of a variable
+along with its type.}
 }
 \value{
-A data frame. If summary is TRUE, each row of output will be a
-    single dataframe, along with the number of each type of variable
-    present. If summary is FALSE, each row of output will be a variable
-    along with its type.
+A data frame.
 }
 \description{
 The datafinder function will search a package for data frames and will
 return useful information about the variables and their types.
 Hopefully there will be more information available in the future.
 (For example: Is there missing data? How many factors are present?
-Are numerical variables normally distributed?)
+Are numerical variables normally distributed?) This will be especially
+useful for statistics educators who are always on the lookout for
+example data sets that have the features needed for the topic at hand.
 }
 \examples{
 datafinder("datasets")

@@ -4,17 +4,17 @@
 #' return useful information about the variables and their types.
 #' Hopefully there will be more information available in the future.
 #' (For example: Is there missing data? How many factors are present?
-#' Are numerical variables normally distributed?)
+#' Are numerical variables normally distributed?) This will be especially
+#' useful for statistics educators who are always on the lookout for
+#' example data sets that have the features needed for the topic at hand.
 #'
 #' @param pkg The name of a package (as a character string in quotation marks).
-#' @param summary If summary is TRUE, each row of output will be a single dataframe,
-#'     along with the number of each type of variable present. If summary is
-#'     FALSE, each row of output will be a variable along with its type.
-#'
-#' @return A data frame. If summary is TRUE, each row of output will be a
-#'     single dataframe, along with the number of each type of variable
-#'     present. If summary is FALSE, each row of output will be a variable
+#' @param summary If summary is TRUE (the default), each row of output will be
+#'     a single dataframe listing the number of each type of variable present.
+#'     If summary is FALSE, each row of output show the name of a variable
 #'     along with its type.
+#'
+#' @return A data frame.
 #'
 #' @author Sean Raleigh, \email{sraleigh@westminstercollege.edu}
 #'
@@ -29,12 +29,20 @@
 #'
 #' @export
 datafinder <- function(pkg, summary = TRUE) {
-    # Check that package is loaded.
+    # Check if package is already loaded. If not, we need
+    # to attach its namespace and then remember to unload it later.
+
+    # turn_off keeps track of packages that were already loaded
+    turn_off = FALSE
     if (!requireNamespace(pkg, quietly = TRUE)) {
         stop("Package is not installed.",
              call. = FALSE)
     } else {
-        library(pkg, character.only = TRUE)
+        pkg_fullname <- paste("package", pkg,  sep = ":")
+        if (!(pkg_fullname %in% search())) {
+            attachNamespace(pkg)
+            turn_off = TRUE
+        }
     }
 
     # The names of the data sets occupy the third column of $results
@@ -80,10 +88,10 @@ datafinder <- function(pkg, summary = TRUE) {
     output <-
         do.call("rbind", lapply(1:length(datalist),  summary_vars))
 
-    detach_string <- paste("package", pkg, sep = ":")
-    detach(detach_string,
-           character.only = TRUE,
-           unload = TRUE)
+    # If we attached pkg, we need to remove it to leave no trace.
+    if (turn_off == TRUE) {
+        unloadNamespace(pkg)
+    }
 
     if (summary == FALSE) {
         return(output)
@@ -92,13 +100,12 @@ datafinder <- function(pkg, summary = TRUE) {
         output <- output %>%
             group_by(Package, Data_set, Class) %>%
             summarise(Count = n()) %>%
-            mutate(Class = paste(Class, "vars", sep = "_")) %>%
             spread(Class, Count, fill = 0) %>%
             ungroup()
         # Extract only the count columns in order to sum them.
         # (Maybe there's a way to include this in the pipeline.)
         total_vars <- output %>%
-            select(ends_with("_vars")) %>%
+            select(-Package,-Data_set) %>%
             transmute(total_vars = rowSums(.))
         # Attach total_vars to the original output
         output <- tbl_df(cbind(output, total_vars))
