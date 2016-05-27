@@ -7,6 +7,10 @@ Description: The datafinder function will search a package for data frames
     (For example: Is there missing data? How many factors are present?
     Are numerical variables normally distributed?)
 Version: 0.1.0
+Imports:
+    stringr,
+    dplyr,
+    tidyr
 Authors@R: person("Sean", "Raleigh", email = "sraleigh@westminstercollege.edu",
                   role = c("aut", "cre"))
 License: GPL-3

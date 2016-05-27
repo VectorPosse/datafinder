@@ -6,7 +6,7 @@
 #' (For example: Is there missing data? How many factors are present?
 #' Are numerical variables normally distributed?)
 #'
-#' @param package The name of a package (as a character string in quotation marks).
+#' @param pkg The name of a package (as a character string in quotation marks).
 #' @param summary If summary is TRUE, each row of output will be a single dataframe,
 #'     along with the number of each type of variable present. If summary is
 #'     FALSE, each row of output will be a variable along with its type.
@@ -22,21 +22,36 @@
 #' datafinder("datasets")
 #'
 #' @importFrom utils data
+#' @importFrom stringr word
+#' @importFrom dplyr n data_frame group_by summarise %>%
+#' @importFrom tidyr spread
 #'
 #' @export
-datafinder <- function(package, summary = TRUE) {
+datafinder <- function(pkg, summary = TRUE) {
+    # Check that package is loaded.
+    if (!requireNamespace(pkg, quietly = TRUE)) {
+        stop("Package is not installed.",
+             call. = FALSE)
+    } else {
+        library(pkg, character.only = TRUE)
+    }
+
     # The names of the data sets occupy the third column of $results
-    datalist <- data(package = package)$results[, 3]
+    datalist <- data(package = pkg)$results[, 3]
 
     summary_vars <- function(i) {
-        dataframe_name <- datalist[i]
-        dataframe <- get(datalist[i])
+        # The name of a data set in the output of data() often
+        # includes parenthesis. For example, "beaver1 (beavers)".
+        # Therefore, we need to extact only the first word (the
+        # actual name of the data set).
+        dataframe_name <- word(datalist[i])
+        dataframe <- get(dataframe_name)
 
         # Check to make sure we have a data frame
         # (This function won't work for matrices, for example)
-        if (class(dataframe) == "data.frame") {
-            partial_output <- data.frame(
-                Package = package,
+        if ("data.frame" %in% class(dataframe)) {
+            partial_output <- data_frame(
+                Package = pkg,
                 Data_Frame = dataframe_name,
                 Variables = names(dataframe),
                 # Variables can have more than one class.
@@ -45,8 +60,7 @@ datafinder <- function(package, summary = TRUE) {
                 # a vector out of it.
                 Class = unname(sapply(
                     lapply(dataframe, class), `[[`, 1
-                )),
-                stringsAsFactors = FALSE
+                ))
             )
         }
         else {
@@ -64,6 +78,12 @@ datafinder <- function(package, summary = TRUE) {
         return(output)
     }
     else if (summary == TRUE) {
+        output <- output %>%
+            group_by(Package, Data_Frame, Class) %>%
+            summarise(Count = n()) %>%
+            spread(Class, Count, fill = 0)
         return(output)
     }
+    detach_string <- paste("package", pkg, sep = ":")
+    detach(detach_string, character.only = TRUE, unload = TRUE)
 }

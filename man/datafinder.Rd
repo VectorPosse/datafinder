@@ -4,10 +4,10 @@
 \alias{datafinder}
 \title{Catalog the variables in available data sets}
 \usage{
-datafinder(package, summary = TRUE)
+datafinder(pkg, summary = TRUE)
 }
 \arguments{
-\item{package}{The name of a package (as a character string in quotation marks).}
+\item{pkg}{The name of a package (as a character string in quotation marks).}
 
 \item{summary}{If summary is TRUE, each row of output will be a single dataframe,
 along with the number of each type of variable present. If summary is
