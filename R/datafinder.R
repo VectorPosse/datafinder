@@ -23,7 +23,8 @@
 #'
 #' @importFrom utils data
 #' @importFrom stringr word
-#' @importFrom dplyr n data_frame group_by summarise %>%
+#' @importFrom dplyr n data_frame tbl_df group_by ungroup select summarise
+#'     mutate transmute  %>%
 #' @importFrom tidyr spread
 #'
 #' @export
@@ -57,7 +58,7 @@ datafinder <- function(pkg, summary = TRUE) {
         if ("data.frame" %in% class(dataframe)) {
             partial_output <- data_frame(
                 Package = pkg,
-                Data_Frame = dataframe_name,
+                Data_set = dataframe_name,
                 Variables = names(dataframe),
                 # Variables can have more than one class.
                 # (Seems to happen only with POSIX* classes.)
@@ -89,11 +90,20 @@ datafinder <- function(pkg, summary = TRUE) {
     }
     else if (summary == TRUE) {
         output <- output %>%
-            group_by(Package, Data_Frame, Class) %>%
+            group_by(Package, Data_set, Class) %>%
             summarise(Count = n()) %>%
-            spread(Class, Count, fill = 0)
+            mutate(Class = paste(Class, "vars", sep = "_")) %>%
+            spread(Class, Count, fill = 0) %>%
+            ungroup()
+        # Extract only the count columns in order to sum them.
+        # (Maybe there's a way to include this in the pipeline.)
+        total_vars <- output %>%
+            select(ends_with("_vars")) %>%
+            transmute(total_vars = rowSums(.))
+        # Attach total_vars to the original output
+        output <- tbl_df(cbind(output, total_vars))
+
         return(output)
     }
-
 
 }
