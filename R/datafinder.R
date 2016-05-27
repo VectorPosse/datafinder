@@ -13,6 +13,8 @@
 #' @examples
 #' datafinder("datasets")
 #'
+#' @importFrom utils data
+#'
 #' @export
 datafinder <- function(pkg) {
     data(package = pkg)$results[,3]
