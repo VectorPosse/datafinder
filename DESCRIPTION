@@ -1,12 +1,14 @@
 Package: datafinder
 Type: Package
-Title: Datafinder
+Title: Catalog the variables in available data sets
+Description: The datafinder function will search a package for data frames
+    and will return useful information about the variables and their types.
+    Hopefully there will be more information available in the future.
+    (For example: Is there missing data? How many factors are present?
+    Are numerical variables normally distributed?)
 Version: 0.1.0
-Author: Sean Raleigh
-Maintainer: Sean Raleigh <sraleigh@westminstercollege.edu>
-Description: The datafinder function will search a package for data and will
-    return useful information about that data like how many variables are present,
-    what are their types, are there missing values, and maybe more in the future.
+Authors@R: person("Sean", "Raleigh", email = "sraleigh@westminstercollege.edu",
+                  role = c("aut", "cre"))
 License: GPL-3
-LazyData: TRUE
+LazyData: true
 RoxygenNote: 5.0.1

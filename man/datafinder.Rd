@@ -2,22 +2,29 @@
 % Please edit documentation in R/datafinder.R
 \name{datafinder}
 \alias{datafinder}
-\title{Finding good data examples}
+\title{Catalog the variables in available data sets}
 \usage{
-datafinder(pkg)
+datafinder(package, summary = TRUE)
 }
 \arguments{
-\item{pkg}{The name of a package (as a character string in quotation marks).}
+\item{package}{The name of a package (as a character string in quotation marks).}
+
+\item{summary}{If summary is TRUE, each row of output will be a single dataframe,
+along with the number of each type of variable present. If summary is
+FALSE, each row of output will be a variable along with its type.}
 }
 \value{
-A data frame. Each row corresponds to a variable in a data set and
-indicates the type of variable, the number of missing observations, and
-maybe more in the future.
+A data frame. If summary is TRUE, each row of output will be a
+    single dataframe, along with the number of each type of variable
+    present. If summary is FALSE, each row of output will be a variable
+    along with its type.
 }
 \description{
-The datafinder function will search a package for data and will return useful
-information about that data like how many variables are present, what are their
-types, are there missing values, and maybe more in the future.
+The datafinder function will search a package for data frames and will
+return useful information about the variables and their types.
+Hopefully there will be more information available in the future.
+(For example: Is there missing data? How many factors are present?
+Are numerical variables normally distributed?)
 }
 \examples{
 datafinder("datasets")
