@@ -13,7 +13,9 @@
 #'
 #' @author Sean Raleigh, \email{sraleigh@westminstercollege.edu}
 #'
-#' @examples count_vars(CO2)
+#' @examples
+#'   count_vars("CO2")
+#'   count_vars(c("CO2", "airquality"))
 #'
 #' @importFrom dplyr %>% group_by_ summarise_ ungroup select_
 #' @importFrom tidyr spread_

@@ -21,7 +21,8 @@ The count_vars function will count the number of the variables (by class) in
 a data frame.
 }
 \examples{
-count_vars(CO2)
+  count_vars("CO2")
+  count_vars(c("CO2", "airquality"))
 
 }
 \author{
