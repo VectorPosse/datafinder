@@ -1,4 +1,4 @@
-#' Explore all the datasets available in a package
+#' Explore all the datasets available in an installed package
 #'
 #' The explore_package function finds all the data frames in an installed
 #'  package and summarizes the number and classes of variables in each.

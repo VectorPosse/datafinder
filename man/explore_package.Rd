@@ -2,7 +2,7 @@
 % Please edit documentation in R/explore_package.R
 \name{explore_package}
 \alias{explore_package}
-\title{Explore all the datasets available in a package}
+\title{Explore all the datasets available in an installed package}
 \usage{
 explore_package(pkg)
 }
