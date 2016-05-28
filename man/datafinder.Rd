@@ -2,7 +2,7 @@
 % Please edit documentation in R/datafinder.R
 \name{datafinder}
 \alias{datafinder}
-\title{Catalog the variables in available data sets}
+\title{Catalog the variables from data sets}
 \usage{
 datafinder(pkg, summary = TRUE)
 }
@@ -11,7 +11,7 @@ datafinder(pkg, summary = TRUE)
 
 \item{summary}{If summary is TRUE (the default), each row of output will be
 a single dataframe listing the number of each type of variable present.
-If summary is FALSE, each row of output show the name of a variable
+If summary is FALSE, each row of output shows the name of each variable
 along with its type.}
 }
 \value{
@@ -27,7 +27,8 @@ useful for statistics educators who are always on the lookout for
 example data sets that have the features needed for the topic at hand.
 }
 \examples{
-datafinder("datasets")
+   datafinder("datasets")
+   datafinder("datasets", summary = FALSE)
 
 }
 \author{

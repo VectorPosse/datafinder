@@ -9,7 +9,7 @@ Description: The datafinder function will search a package for data frames and
     useful for statistics educators who are always on the lookout for
     example data sets that have the features needed for the topic at hand.
 Version: 0.1.0
-Imports: stringr, dplyr, tidyr
+Imports: dplyr, tidyr
 Authors@R: person("Sean", "Raleigh", email = "sraleigh@westminstercollege.edu",
                   role = c("aut", "cre"))
 License: GPL-3
