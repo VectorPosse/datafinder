@@ -1,14 +1,12 @@
 Package: datafinder
 Type: Package
-Title: Catalog the variables in available data sets
-Description: The datafinder function will search a package for data frames and
-    will return useful information about the variables and their types.
-    Hopefully there will be more information available in the future.
-    (For example: Is there missing data? How many factors are present?
-    Are numerical variables normally distributed?) This will be especially
-    useful for statistics educators who are always on the lookout for
-    example data sets that have the features needed for the topic at hand.
-Version: 0.1.0
+Title: Catalog the variables in installed data sets
+Description: The datafinder package is designed to help users explore the
+    number and types of variables available in installed packages. This will
+    be especially useful for statistics educators who are always on the lookout
+    for example data sets that have the features needed that best illustrate
+    the topic at hand.
+Version: 0.1.1
 Imports: dplyr, tidyr
 Authors@R: person("Sean", "Raleigh", email = "sraleigh@westminstercollege.edu",
                   role = c("aut", "cre"))
