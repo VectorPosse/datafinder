@@ -6,7 +6,7 @@ Description: The datafinder package is designed to help users explore the
     be especially useful for statistics educators who are always on the lookout
     for example data sets that have the features needed that best illustrate
     the topic at hand.
-Version: 0.1.1
+Version: 0.1.2
 Imports: dplyr, tidyr
 Authors@R: person("Sean", "Raleigh", email = "sraleigh@westminstercollege.edu",
                   role = c("aut", "cre"))

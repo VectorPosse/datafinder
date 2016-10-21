@@ -22,7 +22,7 @@
 #'
 #' @export
 count_vars <- function(dataframe) {
-    list_vars_data <- do.call("rbind", lapply(dataframe,  list_vars))
+    list_vars_data <- do.call("rbind", lapply(dataframe, list_vars))
     output <- get_counts(list_vars_data)
     return(output)
 }

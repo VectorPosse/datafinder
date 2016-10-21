@@ -3,7 +3,7 @@
 #' The explore_package function finds all the data frames in an installed
 #'  package and summarizes the number and classes of variables in each.
 #'
-#' @param pkg The name of a package (as a character string in quotation marks).
+#' @param pkg The name of a package.
 #'
 #' @return A data frame. Each row gives the counts (by class) of all the
 #' variables in each data frame in the package. If there are no data frames in
@@ -17,6 +17,8 @@
 #'
 #' @export
 explore_package <- function(pkg) {
+    # Allow users to pass argument quoted or unquoted
+    pkg <- as.character(substitute(pkg))
     # Check if package already has a loaded namespace.
     if (pkg %in% loadedNamespaces()) {
         # If so, no worries.
