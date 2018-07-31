@@ -12,4 +12,8 @@ be especially useful for statistics educators who are always on the lookout
 for example data sets that have the features needed that best illustrate
 the topic at hand.
 }
+\author{
+Sean Raleigh, \email{sraleigh@westminstercollege.edu}
 
+Jack Wilburn \email{jackwilburn@tutanota.com}
+}

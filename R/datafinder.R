@@ -9,4 +9,7 @@
 #' @docType package
 #'
 #' @name datafinder
+#'
+#' @author Sean Raleigh, \email{sraleigh@westminstercollege.edu}
+#' @author Jack Wilburn \email{jackwilburn@tutanota.com}
 NULL

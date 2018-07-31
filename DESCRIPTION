@@ -8,9 +8,13 @@ Description: The datafinder package is designed to help users explore the
     the topic at hand.
 Version: 0.1.2
 Imports: dplyr, tidyr
-Authors@R: person("Sean", "Raleigh", email = "sraleigh@westminstercollege.edu",
-                  role = c("aut", "cre"))
+Authors@R: c(
+    person("Sean", "Raleigh", email = "sraleigh@westminstercollege.edu",
+            role = c("aut", "cre")),
+    person("Jack", "Wilburn", email = "jackwilburn@tutanota.com",
+            role = "aut"))
 License: GPL-3
 LazyData: true
-RoxygenNote: 5.0.1
+RoxygenNote: 6.1.0
 RemoteURL: https://github.com/VectorPosse/datafinder
+Suggests: testthat

@@ -7,7 +7,7 @@
 explore_package(pkg)
 }
 \arguments{
-\item{pkg}{The name of a package (as a character string in quotation marks).}
+\item{pkg}{The name of a package.}
 }
 \value{
 A data frame. Each row gives the counts (by class) of all the
@@ -25,4 +25,3 @@ explore_package("datasets")
 \author{
 Sean Raleigh, \email{sraleigh@westminstercollege.edu}
 }
-

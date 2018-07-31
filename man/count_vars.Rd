@@ -28,4 +28,3 @@ a data frame.
 \author{
 Sean Raleigh, \email{sraleigh@westminstercollege.edu}
 }
-
