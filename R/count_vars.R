@@ -12,6 +12,7 @@
 #' will be returned.
 #'
 #' @author Sean Raleigh, \email{sraleigh@westminstercollege.edu}
+#' @author Jack Wilburn \email{jackwilburn@tutanota.com}
 #'
 #' @examples
 #'   count_vars("CO2")
@@ -21,8 +22,9 @@
 #' @importFrom tidyr spread_
 #'
 #' @export
+
 count_vars <- function(dataframe) {
-    list_vars_data <- do.call("rbind", lapply(dataframe, list_vars))
+    list_vars_data <- do.call("rbind", lapply(as.character(substitute(dataframe)), list_vars))
     output <- get_counts(list_vars_data)
     return(output)
 }

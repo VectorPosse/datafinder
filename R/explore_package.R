@@ -10,6 +10,7 @@
 #' the package, an empty data frame will be returned.
 #'
 #' @author Sean Raleigh, \email{sraleigh@westminstercollege.edu}
+#' @author Jack Wilburn \email{jackwilburn@tutanota.com}
 #'
 #' @examples explore_package("datasets")
 #'

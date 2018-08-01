@@ -13,12 +13,14 @@ the package, an empty data frame will be returned.
 }
 \description{
 The discover_packages function finds the number of data frames in installed
- packages.
+packages.
 }
 \examples{
-explore_installed()
+discover_packages()
 
 }
 \author{
 Sean Raleigh, \email{sraleigh@westminstercollege.edu}
+
+Jack Wilburn \email{jackwilburn@tutanota.com}
 }

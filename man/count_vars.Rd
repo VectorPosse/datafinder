@@ -27,4 +27,6 @@ a data frame.
 }
 \author{
 Sean Raleigh, \email{sraleigh@westminstercollege.edu}
+
+Jack Wilburn \email{jackwilburn@tutanota.com}
 }

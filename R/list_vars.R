@@ -11,6 +11,7 @@
 #' will be returned.
 #'
 #' @author Sean Raleigh, \email{sraleigh@westminstercollege.edu}
+#' @author Jack Wilburn \email{jackwilburn@tutanota.com}
 #'
 #' @examples list_vars("CO2")
 #'

@@ -25,4 +25,6 @@ list_vars("CO2")
 }
 \author{
 Sean Raleigh, \email{sraleigh@westminstercollege.edu}
+
+Jack Wilburn \email{jackwilburn@tutanota.com}
 }
