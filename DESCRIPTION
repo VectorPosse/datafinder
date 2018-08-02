@@ -1,14 +1,14 @@
 Package: datafinder
 Type: Package
-Title: Catalog the variables in installed data sets
-Description: 
+Title: Find And Explore Currently Installed Data Sets
+Description:
     The datafinder package is designed to help users explore the
     number and types of variables available in installed packages. This will
     be especially useful for statistics educators who are always on the lookout
     for example data sets that have the features needed that best illustrate
     the topic at hand.
 Version: 0.2.0
-Imports: 
+Imports:
     dplyr, 
     GGally,
     tidyr
@@ -17,8 +17,11 @@ Authors@R: c(
             role = c("aut", "cre")),
     person("Jack", "Wilburn", email = "jackwilburn@tutanota.com",
             role = "aut"))
-License: GPL-3
+License: GPL-3 + file LICENSE
 LazyData: true
 RoxygenNote: 6.1.0
 RemoteURL: https://github.com/VectorPosse/datafinder
-Suggests: testthat
+Suggests: testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
