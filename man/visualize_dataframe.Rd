@@ -10,18 +10,22 @@ visualize_dataframe(dataframe, override = FALSE)
 \item{dataframe}{One data frame (as a character string).}
 
 \item{override}{Defaults to False. Set to true to override imposed limitations
-on the number of variables included in the plot}
+on the number of variables included in the plot.}
 }
 \value{
-A plot that plots each variable against another. This function
-is dependent on the number of rows and variables
+A matrix of plots. Each variable included is graphed against all
+other variables and itself.
 }
 \description{
 The visualize_dataframe function helps visualize data frames with a reasonable
-number of variables
+number of variables. This function is dependent on the number of rows and variables
+and will warn you accordingly. The warnings will come for long and wide datasets
+as these properties affect performance and the legibility of the plot produced.
 }
 \examples{
 visualize_dataframe("CO2")
+visualize_dataframe(mtcars, override = TRUE)
+
 
 }
 \author{
