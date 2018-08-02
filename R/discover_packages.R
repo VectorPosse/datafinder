@@ -28,5 +28,7 @@ for (i in 1:length(pkgs)) {
     output <- rbind(output, df)
 }
 
+output <- output[output$num_datasets > 0, ]
+
 return(output)
 }
