@@ -17,7 +17,7 @@ Authors@R: c(
             role = c("aut", "cre")),
     person("Jack", "Wilburn", email = "jackwilburn@tutanota.com",
             role = "aut"))
-License: GPL-3.0
+License: GPL-3 + file LICENSE
 LazyData: true
 RoxygenNote: 6.1.0
 RemoteURL: https://github.com/VectorPosse/datafinder
