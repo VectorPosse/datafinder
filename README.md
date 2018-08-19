@@ -23,3 +23,6 @@ devtools::install_github("VectorPosse/datafinder")
 ```
 
 If you see any errors when using this code, make sure that you have the devtools package installed.
+
+### Who made this package?
+This package was created by Professor Sean Raleigh and undergraduate student Jack Wilburn. We are both at Westminster College in Utah and members of an on campus society called QUARC (QUantative Analysis and Research Co-operative).
