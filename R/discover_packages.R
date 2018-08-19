@@ -29,6 +29,7 @@ for (i in 1:length(pkgs)) {
 }
 
 output <- output[output$num_datasets > 0, ]
+output <- na.omit(output)
 
 return(output)
 }

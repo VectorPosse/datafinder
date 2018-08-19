@@ -13,6 +13,12 @@ wide_override <- visualize_dataframe(mtcars, override = TRUE)
 long <- visualize_dataframe(longdata)
 long_override <- visualize_dataframe(longdata, override = TRUE)
 
+test_that("visualize_dataframe: class gg, ggmatrix", {
+    expect_warning(wide <- visualize_dataframe(mtcars), )
+    expect_warning(long <- visualize_dataframe(longdata), )
+    expect_warning(long_override <- visualize_dataframe(longdata, override = TRUE), )
+})
+
 # Test output classes
 test_that("visualize_dataframe: class gg, ggmatrix", {
     expect_equal(class(reasonable), c("gg", "ggmatrix"))
