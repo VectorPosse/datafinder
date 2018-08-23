@@ -26,3 +26,5 @@ If you see any errors when using this code, make sure that you have the devtools
 
 ### Who made this package?
 This package was created by Professor Sean Raleigh and undergraduate student Jack Wilburn. We are both at Westminster College in Utah and members of an on campus society called QUARC (QUantative Analysis and Research Co-operative).
+
+[![Quarc_Logo.jpg](https://s22.postimg.cc/czjv8y6f5/Quarc_Logo.jpg)](https://postimg.cc/image/nmdoedekd)
