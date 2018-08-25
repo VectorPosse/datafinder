@@ -18,21 +18,18 @@
 #'
 #' @export
 explore_package <- function(pkg) {
-    # Allow users to pass argument quoted or unquoted
+    # Allow users to pass argument quoted or unquoted and outputs as chr
     pkg <- as.character(substitute(pkg))
-    # Check if package already has a loaded namespace.
-    if (pkg %in% loadedNamespaces()) {
-        # If so, no worries.
-        unload_later = FALSE
-        # If not, require it.
-    } else if (!requireNamespace(pkg, quietly = TRUE)) {
-        # If the package isn't even installed, stop with an error.
+
+    # Check if package is installed (no worries about unloading)
+    if (!requireNamespace(pkg, quietly = TRUE)) {
+        # If the package isn't installed, stop with an error.
         stop("Package is not installed.",
              call. = FALSE)
-    } else {
-        # We will manually unload the namespace later.
-        unload_later = TRUE
     }
+
+    # library() gets around the error caused by lazy loading
+    library(pkg, character.only = TRUE)
 
     # The names of the data sets occupy the third column of data()$results
     datalist <- data(package = pkg)$results[, 3]
@@ -61,11 +58,5 @@ explore_package <- function(pkg) {
     # [NEED TO FIX THIS!]
 
     output <- get_counts(list_vars_pkg)
-
-    # If we loaded a namsepace, we need to remove it to leave no trace.
-    if (unload_later == TRUE) {
-        unloadNamespace(pkg)
-    }
-
     return(output)
 }
