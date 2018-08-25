@@ -1,10 +1,10 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "The datafinder pipeline"
+author: "Sean Raleigh and Jack Wilburn"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{The datafinder pipelin}e
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -16,50 +16,45 @@ knitr::opts_chunk$set(
 )
 ```
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+Thanks for choosing to use datafinder as an exploratory tool for your next project! As with any package, there are many functions and the best way to acquaint yourself with them is through this documentation. Here we will discuss the entire datafinder pipeline from project definition to model building.
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+Let's make sure that the package is loaded and attached with:
 
-## Vignette Info
-
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
-
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+```{r, warning = FALSE, message = FALSE}
+library(datafinder)
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
+Also, we expect that you have a project in mind. For this example, we are going to be looking for data that will give us a 2 sample t-test that has a significant p value. This might be useful for statistical educators but if your project is more research based then make sure that the data you're using satisfies all necessary conditions.
 
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
+## Discovering Loaded Pacakges
 
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
+The first thing we need to do is see which packages we have installed have data in them. We do this by running the `discover_packages()` command from the terminal. 
 
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
+```{r, warning = FALSE, message = FALSE}
+tail(discover_packages(), 10)
 ```
 
-Also a quote using `>`:
+Running this command on my machine yields a large list of packages with the amount of data sets in each. The command above grabs just the last 10 of them. For this example I'm going to explore the datasets package but for your project you may choose another. Additionally, you may have to explore a few before you find the right data.
 
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
+## Exploring A Single Package
+
+Now let's explore the datasets package. It's really easy to look at the data in the package with the `explore_package()` function.
+
+```{r}
+explore_package(datasets)[67:73,]
+```
+
+Again, this function gives a large list of datasets so we're just showing some of them. For this project we're going to choose the mtcars data set.
+
+## Visualizing The Data Frame
+
+Now it's time to look at the whole dataframe and get a sense of the data contained within. to do this, we can use the `visualize_dataframe()` command. This command can sometimes take a while to run but rest assured it's running.
+
+```{r, fig.width = 5, fig.height = 5}
+visualize_dataframe(mtcars)
+```
+
+This plot is giving us a 10 by 10 grid which is the max output for this function. If you have some more variables it might be best to use the overide to plot more variables. The syntax for the override would be `visualize_dataset(mtcars, override = TRUE)`.
+
+
+

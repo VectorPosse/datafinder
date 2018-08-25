@@ -36,15 +36,15 @@ visualize_dataframe <- function(dataframe, override = FALSE) {
     # If manual overide is set to true
     if (override) {
         # Plot everything
-        ggpairs(dataframe)
+        ggpairs(dataframe, progress = NULL)
     } else
         # if the data frame is wide
         if (ncol(dataframe) > 10) {
             # Notify about legibility
             warning("This data set has a lot of columns so we will only take the first 10 so that the plot is still legible.")
             # Plot the first 10 variables
-            ggpairs(dataframe[, 1:10])
+            ggpairs(dataframe[, 1:10], progress = NULL)
         } else
         # Plot everything
-        ggpairs(dataframe)
+        ggpairs(dataframe, progress = NULL)
 }

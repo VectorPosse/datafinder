@@ -19,7 +19,7 @@ There are many ways you can contribute! We hope that you will recommend bug fixe
 Installing datafinder is easy. Currently, the only way to get this package is through github using the below code.
 
 ``` r
-devtools::install_github("VectorPosse/datafinder") 
+devtools::install_github("VectorPosse/datafinder", build_vignettes = TRUE) 
 ```
 
 If you see any errors when using this code, make sure that you have the devtools package installed.
