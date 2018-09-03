@@ -30,6 +30,7 @@ for (i in 1:length(pkgs)) {
 
 output <- output[output$num_datasets > 0, ]
 output <- na.omit(output)
+row.names(output) <- 1:nrow(output)
 
 return(output)
 }
