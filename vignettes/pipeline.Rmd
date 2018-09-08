@@ -1,6 +1,6 @@
 ---
 title: "The datafinder pipeline"
-author: "Sean Raleigh and Jack Wilburn"
+author: "Dr. Sean Raleigh and Jack Wilburn"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -22,9 +22,10 @@ Let's make sure that the package is loaded and attached with:
 
 ```{r, warning = FALSE, message = FALSE}
 library(datafinder)
+library(mosaic)     #For prop.test later on
 ```
 
-Also, we expect that you have a project in mind. For this example, we are going to be looking for data that will give us a 2 sample t-test that has a significant p value. This might be useful for statistical educators but if your project is more research based then make sure that the data you're using satisfies all necessary conditions.
+Also, we expect that you have a project in mind. For this example, we are going to be looking for data that will give us a 2 proportion test that has a significant p value. This might be useful for statistical educators but if your project is more research based then make sure that the data you're using satisfies all necessary conditions.
 
 ## Discovering Loaded Pacakges
 
@@ -34,27 +35,63 @@ The first thing we need to do is see which packages we have installed have data 
 tail(discover_packages(), 10)
 ```
 
-Running this command on my machine yields a large list of packages with the amount of data sets in each. The command above grabs just the last 10 of them. For this example I'm going to explore the datasets package but for your project you may choose another. Additionally, you may have to explore a few before you find the right data.
+Running this command on my machine yields a large list of packages with the amount of data sets in each. The command above grabs just the last 10 of them. For this example I'm going to explore the MASS package but for your project you may choose another. Additionally, you may have to explore a few before you find the right data.
 
 ## Exploring A Single Package
 
 Now let's explore the datasets package. It's really easy to look at the data in the package with the `explore_package()` function.
 
 ```{r}
-explore_package(datasets)[67:73,]
+explore_package(MASS)[7:13,]
 ```
 
-Again, this function gives a large list of datasets so we're just showing some of them. For this project we're going to choose the mtcars data set.
+Again, this function gives a large list of data sets so we're just showing some of them. For this project we're going to choose the Melanoma data set.
 
 ## Visualizing The Data Frame
 
 Now it's time to look at the whole dataframe and get a sense of the data contained within. to do this, we can use the `visualize_dataframe()` command. This command can sometimes take a while to run but rest assured it's running.
 
 ```{r, fig.width = 5, fig.height = 5}
-visualize_dataframe(mtcars)
+visualize_dataframe(Melanoma)
 ```
 
-This plot is giving us a 10 by 10 grid which is the max output for this function. If you have some more variables it might be best to use the overide to plot more variables. The syntax for the override would be `visualize_dataset(mtcars, override = TRUE)`.
+This plot is giving us a 7 by 7 grid of each variable plotted against each ohter. If you have more than 10 variables in a dataset it might be best to use the overide to plot more variables. The syntax for the override would be `visualize_dataset(MASS, override = TRUE)`. In this case, overriding does nothing but it would for a wider dataframe. 
 
+Additionally, we can see that some of these variables are actually factor variables, not numerical. As such, let's make them into factors and visualize the data frame again. The status variable is not bianry but we'd prefer it to be so let's combine "alive" and "died from other causes" into a category called other.
 
+```{r, fig.width = 5, fig.height = 5}
+cols <- c("status", "sex", "ulcer")
+Melanoma[cols] <- lapply(Melanoma[cols], factor)
+rm(cols)
+levels(Melanoma$status) <- c("died from melanoma", "other", "other")
+visualize_dataframe(Melanoma)
+```
 
+Now we get plots that are better for visualizing categorical data. Since our plan is to run a two proportion test I think it would be best if we chose the status and sex variables. The question we'd like to ask is: Is there a difference between the rate at which women and men in Denmark die from malignant melanoma?
+
+## Running The Test
+
+Now that we have or variables, we first need to check the conditions of the model we plan to use. For a 2 proportion test the conditions are: 
+
+* Random
+    - We have no information about how these samples were obtained. We hope the 126 female patients and 79 male patients are representative of other Danish patients with malignant melanoma.
+
+* 10%
+    - We don't know exactly how many people in Denmark suffer from malignant melanoma, but we could imagine over time it's more than 1260 females and 790 males.
+
+* Success/Failure
+    - Checking the contingency table above (the one with counts), we see the numbers 28 and 98 (the successes and failures among females), and 29 and 50 (the successes and failures among males). These are all larger than 10.
+    
+Now that the conditions are suitably checked we can see if our data gives us what we set out to find, a suitable, statistically significant 2 proportion test.
+
+```{r}
+status_sex_test <- prop.test(status ~ sex, data = Melanoma)
+status_sex_test$statistic
+status_sex_test$p.value
+```
+
+Thus we see that we yield a chi-squared statistic of 4.38 yielding a p value of 0.036. Therefore we found exactly what we were looking for, a statistically significant p value from a 2 proportion test.
+
+## Conclusion
+
+This vignette shows how a user of the data finder package might start with the seed of an idea and work all the way through to finding a suitable example. In reality this process is a lot of trial and error but our functions help speed up the process by allowing users to discover packages, explore packages, and visualize dataframes. We hope that this was a useful resource and we're always open to feedback at our [github project page](https://github.com/VectorPosse/datafinder/).
