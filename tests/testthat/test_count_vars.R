@@ -6,11 +6,9 @@ test_that("count_vars: class data.frame", {
     expect_equal(class(count_vars("CO2")), "data.frame")
 })
 
-## Check if no input returns empty data frame
-ref_NA <- data.frame()
+## Check if no input returns error
 test_that("count_vars: count the number of missing dataframe", {
-    expect_equal(count_vars(""), ref_NA)
-    expect_equal(count_vars(), count_vars(""))
+    expect_error(count_vars())
 })
 
 ## Check if single data object returns data frame of length one with correct

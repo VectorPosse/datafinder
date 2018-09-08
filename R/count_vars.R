@@ -26,5 +26,17 @@
 count_vars <- function(dataframe) {
     list_vars_data <- do.call("rbind", lapply(as.character(substitute(dataframe)), list_vars))
     output <- get_counts(list_vars_data)
+
+    # This allows functions to be passed like c()
+    if ("function." %in% colnames(output)) {
+        # Choose columns without function variable
+        output <- output[output$function. < 1,]
+        # Remove function column
+        output <- subset(output, select = -function.)
+        # Remove leftover factor in Dataframe variable
+        output$Dataframe <- droplevels(output$Dataframe)
+        # Rename the rows
+        rownames(output) <- 1:nrow(output)
+    }
     return(output)
 }
