@@ -8,15 +8,15 @@ longdata <- as.data.frame(rbind(EuStockMarkets, EuStockMarkets, EuStockMarkets,
 # Load in all possible permuations
 reasonable <- visualize_dataframe(CO2)
 reasonable_override <- visualize_dataframe(CO2, override = TRUE)
-wide <- visualize_dataframe(mtcars)
+expect_warning(wide <- visualize_dataframe(mtcars))
 wide_override <- visualize_dataframe(mtcars, override = TRUE)
-long <- visualize_dataframe(longdata)
-long_override <- visualize_dataframe(longdata, override = TRUE)
+expect_warning(long <- visualize_dataframe(longdata))
+expect_warning(long_override <- visualize_dataframe(longdata, override = TRUE))
 
 test_that("visualize_dataframe: class gg, ggmatrix", {
-    expect_warning(wide <- visualize_dataframe(mtcars), )
-    expect_warning(long <- visualize_dataframe(longdata), )
-    expect_warning(long_override <- visualize_dataframe(longdata, override = TRUE), )
+    expect_warning(wide <- visualize_dataframe(mtcars))
+    expect_warning(long <- visualize_dataframe(longdata))
+    expect_warning(long_override <- visualize_dataframe(longdata, override = TRUE))
 })
 
 # Test output classes
