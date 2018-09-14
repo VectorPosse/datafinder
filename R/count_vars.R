@@ -26,6 +26,7 @@
 count_vars <- function(dataframe) {
     list_vars_data <- do.call("rbind", lapply(as.character(substitute(dataframe)), list_vars))
     output <- get_counts(list_vars_data)
+    output <- get_sample_sizes(output)
 
     # This allows functions to be passed like c()
     if ("function." %in% colnames(output)) {

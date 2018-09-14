@@ -18,7 +18,8 @@ ref_single <- data.frame(
     factor = 2,
     numeric = 2,
     ordered = 1,
-    total_vars = 5
+    total_vars = 5,
+    sample_size = 84
 )
 test_that("count_vars: count the number of variables in a single dataframe", {
     expect_equal(count_vars("CO2"), ref_single)
@@ -32,7 +33,8 @@ ref_multiple <- data.frame(
         factor = c(2, 0),
         numeric = c(2, 11),
         ordered = c(1, 0),
-        total_vars = c(5, 11)
+        total_vars = c(5, 11),
+        sample_size = c(84, 32)
 )
 test_that("count_vars: count the number of variables in multiple dataframes", {
               expect_equal(count_vars(c("CO2", "mtcars")), ref_multiple)

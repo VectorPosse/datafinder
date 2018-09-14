@@ -58,5 +58,6 @@ explore_package <- function(pkg) {
     # [NEED TO FIX THIS!]
 
     output <- get_counts(list_vars_pkg)
+    output <- get_sample_sizes(output)
     return(output)
 }

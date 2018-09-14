@@ -26,8 +26,7 @@ list_vars <- function(dataframe) {
                     sep = ""))
     })
 
-    # Check to make sure we have a data frame
-    # (This function won't work for matrices, for example)
+    # Check to make sure we have a data frame or something coerced
     if ("data.frame" %in% class(dataframe)) {
         output <- data.frame(
             Dataframe = dataframe_name,
