@@ -5,7 +5,7 @@
 #'
 #' @return A data frame. Each row gives the counts of all the
 #' data frames in each package. If there are no data frames in
-#' the package, an empty data frame will be returned.
+#' the package, the package will be omitted.
 #'
 #' @author Sean Raleigh, \email{sraleigh@westminstercollege.edu}
 #' @author Jack Wilburn \email{jackwilburn@tutanota.com}
@@ -13,6 +13,7 @@
 #' @examples discover_packages()
 #'
 #' @importFrom utils data
+#' @importFrom stats na.omit
 #'
 #' @export
 

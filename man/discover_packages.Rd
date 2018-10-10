@@ -9,7 +9,7 @@ discover_packages()
 \value{
 A data frame. Each row gives the counts of all the
 data frames in each package. If there are no data frames in
-the package, an empty data frame will be returned.
+the package, the package will be omitted.
 }
 \description{
 The discover_packages function finds the number of data frames in installed
