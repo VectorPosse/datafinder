@@ -27,6 +27,12 @@
 #' @export
 #'
 visualize_dataframe <- function(dataframe, override = FALSE) {
+
+    # Pass package in as string or not
+    if (class(dataframe) == "character") {
+        dataframe <- eval(parse(text = dataframe))
+    }
+
     # If the data frame is long
     if (nrow(dataframe) > 10000){
         # Notify about performance issues inherited from ggplot
