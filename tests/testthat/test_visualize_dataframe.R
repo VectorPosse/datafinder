@@ -13,7 +13,14 @@ wide_override <- visualize_dataframe(mtcars, override = TRUE)
 expect_warning(long <- visualize_dataframe(longdata))
 expect_warning(long_override <- visualize_dataframe(longdata, override = TRUE))
 
-test_that("visualize_dataframe: class gg, ggmatrix", {
+# Test that we can pass dataframes quoted or not
+test_that("visualize_dataframe: pass dataframe as string or not", {
+    expect_silent(visualize_dataframe(women))
+    expect_silent(visualize_dataframe("women"))
+})
+
+# Test that wide and long dataframes giv warnings
+test_that("visualize_dataframe: warnings work as expected", {
     expect_warning(wide <- visualize_dataframe(mtcars))
     expect_warning(long <- visualize_dataframe(longdata))
     expect_warning(long_override <- visualize_dataframe(longdata, override = TRUE))
@@ -30,22 +37,22 @@ test_that("visualize_dataframe: class gg, ggmatrix", {
 })
 
 # Test resonably sized data frames
-test_that("visualize_dataframe: resonably sized", {
+test_that("visualize_dataframe: resonably sized works", {
     expect_equal(reasonable$nrow, ncol(CO2))
 })
 
 # Test long data frames
-test_that("visualize_dataframe: wide", {
+test_that("visualize_dataframe: wide truncates output to 10 cols", {
     expect_equal(wide$nrow, 10)
 })
 
 # Test wide data frames
-test_that("visualize_dataframe: long", {
+test_that("visualize_dataframe: long no variables are lost", {
     expect_equal(long$nrow, ncol(longdata))
 })
 
 # Test that override makes a plot the same length as columns
-test_that("visualize_dataframe: override function", {
+test_that("visualize_dataframe: override function plots correctly", {
     expect_equal(reasonable_override$nrow, ncol(CO2))
     expect_equal(reasonable_override$ncol, ncol(CO2))
     expect_equal(wide_override$nrow, ncol(mtcars))
