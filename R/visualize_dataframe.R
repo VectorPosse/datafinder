@@ -16,8 +16,11 @@
 #' @author Jack Wilburn \email{jackwilburn@tutanota.com}
 #'
 #' @examples
+#' \dontrun{
 #' visualize_dataframe("CO2")
 #' visualize_dataframe(mtcars, override = TRUE)
+#' }
+#'
 #'
 #'
 #' @importFrom dplyr %>% group_by_ summarise_ ungroup select_

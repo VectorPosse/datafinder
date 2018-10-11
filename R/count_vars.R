@@ -28,6 +28,9 @@ count_vars <- function(dataframe) {
     output <- get_counts(list_vars_data)
     output <- get_sample_sizes(output)
 
+    # Stop note on check
+    function. <- NULL
+
     # This allows functions to be passed like c()
     if ("function." %in% colnames(output)) {
         # Choose columns without function variable

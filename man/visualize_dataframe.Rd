@@ -23,8 +23,11 @@ and will warn you accordingly. The warnings will come for long and wide datasets
 as these properties affect performance and the legibility of the plot produced.
 }
 \examples{
+\dontrun{
 visualize_dataframe("CO2")
 visualize_dataframe(mtcars, override = TRUE)
+}
+
 
 
 }
