@@ -29,7 +29,7 @@
 visualize_dataframe <- function(dataframe, override = FALSE) {
 
     # Pass package in as string or not
-    if (class(dataframe) == "character") {
+    if (class(dataframe)[1] == "character") {
         dataframe <- eval(parse(text = dataframe))
     }
 

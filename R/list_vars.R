@@ -21,10 +21,7 @@ list_vars <- function(dataframe) {
     dataframe <- eval(parse(text = dataframe_name))
 
     # Trycatch to see if we can coerce to data frame
-    tryCatch(dataframe <- data.frame(dataframe),  error = function(e) {
-        print(paste(dataframe_name , " will not coerce into a data frame.",
-                    sep = ""))
-    })
+    tryCatch(dataframe <- data.frame(dataframe), error = function(e){})
 
     # Check to make sure we have a data frame or something coerced
     if ("data.frame" %in% class(dataframe)) {
