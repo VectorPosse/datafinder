@@ -43,6 +43,25 @@ visualize_dataframe <- function(dataframe, override = FALSE) {
                 you may experience some perfomance issues.")
     }
 
+    # If high cardinality factor then remove
+    list_of_levels <- lapply(dataframe, levels)
+    cols_to_remove <- {}
+
+    for (i in 1:length(list_of_levels)) {
+        if (length(list_of_levels[[i]]) > 15) {
+            cols_to_remove <- c(cols_to_remove, i)
+            warning("Dropping factor with high cardinality")
+        }
+    }
+    if (! is.null(cols_to_remove)) {
+        dataframe <- data.frame(dataframe[, -cols_to_remove])
+    }
+
+    # If we removed all rows, exit with error
+    if (ncol(dataframe) == 0) {
+        stop("After removing high cardinality factors, there's nothing left")
+    }
+
     # If manual overide is set to true
     if (override) {
         # Plot everything
@@ -60,3 +79,4 @@ visualize_dataframe <- function(dataframe, override = FALSE) {
         # Plot everything
         ggpairs(dataframe, progress = FALSE)
 }
+

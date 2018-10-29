@@ -61,3 +61,11 @@ test_that("visualize_dataframe: override function plots correctly", {
     expect_equal(long_override$nrow, ncol(longdata))
     expect_equal(long_override$ncol, ncol(longdata))
 })
+
+# Test high cardinality plot
+test_that("visualize_dataframe: high cardinality plots work", {
+    a <- data.frame(factor(1:100))
+    expect_warning(expect_error(visualize_dataframe(a)))
+    a$b <- factor(rep(1:10, 10))
+    expect_warning(visualize_dataframe(a))
+})
