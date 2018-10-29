@@ -79,4 +79,3 @@ visualize_dataframe <- function(dataframe, override = FALSE) {
         # Plot everything
         ggpairs(dataframe, progress = FALSE)
 }
-
