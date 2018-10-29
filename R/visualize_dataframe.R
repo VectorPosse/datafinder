@@ -39,7 +39,8 @@ visualize_dataframe <- function(dataframe, override = FALSE) {
     # If the data frame is long
     if (nrow(dataframe) > 10000){
         # Notify about performance issues inherited from ggplot
-        warning("This data set has a lot of rows and you may experience some perfomance issues.")
+        warning("This data set has a lot of rows,
+                you may experience some perfomance issues.")
     }
 
     # If manual overide is set to true
@@ -50,7 +51,9 @@ visualize_dataframe <- function(dataframe, override = FALSE) {
         # if the data frame is wide
         if (ncol(dataframe) > 10) {
             # Notify about legibility
-            warning("This data set has a lot of columns so we will only take the first 10 so that the plot is still legible.")
+            warning("This data set has a lot of columns
+                    we will only take the first 10 so that
+                    the plot is still legible.")
             # Plot the first 10 variables
             ggpairs(dataframe[, 1:10], progress = FALSE)
         } else

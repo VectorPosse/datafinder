@@ -23,7 +23,8 @@ test_that("visualize_dataframe: pass dataframe as string or not", {
 test_that("visualize_dataframe: warnings work as expected", {
     expect_warning(wide <- visualize_dataframe(mtcars))
     expect_warning(long <- visualize_dataframe(longdata))
-    expect_warning(long_override <- visualize_dataframe(longdata, override = TRUE))
+    expect_warning(long_override <- visualize_dataframe(longdata,
+                                                        override = TRUE))
 })
 
 # Test output classes

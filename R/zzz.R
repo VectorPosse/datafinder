@@ -1,4 +1,5 @@
 .onAttach <- function(libname, pkgname) {
     # Gives message on library()
-    packageStartupMessage("Thanks for using datafinder to find your data for your next project!")
+    packageStartupMessage("Thanks for using datafinder to
+                          find data for your next project!")
 }

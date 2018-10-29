@@ -12,7 +12,7 @@ get_counts <- function(list_vars_data) {
         # Extract only the class count columns in order to sum them.
         var_classes <- output %>%
             select_("-Dataframe")
-        total_vars =  rowSums(var_classes)
+        total_vars <- rowSums(var_classes)
 
         # Attach total_vars to the original output
         output <- data.frame(cbind(output, total_vars))
@@ -24,9 +24,9 @@ get_counts <- function(list_vars_data) {
 
 # Get sample size for each row
 get_sample_sizes <- function(output) {
-    sample_size <- {}
+    sample_size <- c()
     for (i in 1:nrow(output)) {
-        n <- output[i,]$Dataframe %>%
+        n <- output[i, ]$Dataframe %>%
             as.character() %>%
             get() %>%
             as.data.frame() %>%

@@ -38,5 +38,6 @@ ref_multiple <- data.frame(
 )
 test_that("count_vars: count the number of variables in multiple dataframes", {
               expect_equal(count_vars(c("CO2", "mtcars")), ref_multiple)
-              expect_equal(count_vars(c(CO2, mtcars)), count_vars(c("CO2", "mtcars")))
+              expect_equal(count_vars(c(CO2, mtcars)),
+                           count_vars(c("CO2", "mtcars")))
 })
