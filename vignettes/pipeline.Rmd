@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-Thanks for choosing to use datafinder as an exploratory tool for your next project! As with any package, there are many functions and the best way to acquaint yourself with them is through this documentation. Here we will discuss the entire datafinder pipeline from project definition to model building.
+Thanks for choosing to use datafinder as an exploratory tool for your next project! As with any package, there are many functions and the best way to acquaint yourself with them is through our documentation and this vignette. Here we will discuss the entire datafinder pipeline from project definition to hypothesis testing.
 
 Let's make sure that the package is loaded and attached with:
 
@@ -25,7 +25,7 @@ library(datafinder)
 library(mosaic)     #For prop.test later on
 ```
 
-Also, we expect that you have a project in mind. For this example, we are going to be looking for data that will give us a 2 proportion test that has a significant p value. This might be useful for statistical educators but if your project is more research based then make sure that the data you're using satisfies all necessary conditions.
+Also, we expect that you have a project in mind. For this example, we are going to be looking for data that will give us a 2 proportion test that has a significant p value. This might be useful for statistical educators but if your project is more research based then make sure that the data you're using satisfies all necessary conditions and you're not just cherry-picking data that fits your assumption.
 
 ## Discovering Loaded Pacakges
 
@@ -55,9 +55,9 @@ Now it's time to look at the whole dataframe and get a sense of the data contain
 visualize_dataframe(Melanoma)
 ```
 
-This plot is giving us a 7 by 7 grid of each variable plotted against each ohter. If you have more than 10 variables in a dataset it might be best to use the overide to plot more variables. The syntax for the override would be `visualize_dataset(MASS, override = TRUE)`. In this case, overriding does nothing but it would for a wider dataframe. 
+This plot is giving us a 7 by 7 grid of each variable plotted against each ohter. If you have more than 10 variables in a dataset it might be best to use the overide to plot more variables. The syntax for the override would be `visualize_dataset(MASS, override = TRUE)`. In this case, overriding does nothing but it would for a wider (more variables) dataframe. 
 
-Additionally, we can see that some of these variables are actually factor variables, not numerical. As such, let's make them into factors and visualize the data frame again. The status variable is not bianry but we'd prefer it to be so let's combine "alive" and "died from other causes" into a category called other.
+Additionally, we can see that some of these variables are actually factor variables, not numerical. As such, let's make them into factors and visualize the data frame again. The status variable is not bianry but we'd prefer it to be for our later t test. Let's combine "alive" and "died from other causes" into a category called other.
 
 ```{r, fig.width = 5, fig.height = 5}
 cols <- c("status", "sex", "ulcer")
@@ -94,4 +94,4 @@ Thus we see that we yield a chi-squared statistic of 4.38 yielding a p value of 
 
 ## Conclusion
 
-This vignette shows how a user of the data finder package might start with the seed of an idea and work all the way through to finding a suitable example. In reality this process is a lot of trial and error but our functions help speed up the process by allowing users to discover packages, explore packages, and visualize dataframes. We hope that this was a useful resource and we're always open to feedback at our [github project page](https://github.com/VectorPosse/datafinder/).
+This vignette shows how a user of the data finder package might start with the seed of an idea and work all the way through to finding a suitable example. In reality, this process is a lot of trial and error but our functions help speed up the process by allowing users to discover packages, explore a package, and visualize a dataframe. We hope that this was a useful resource and we're always open to feedback at our [github project page](https://github.com/VectorPosse/datafinder/).
