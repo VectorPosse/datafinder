@@ -18,7 +18,14 @@
 #' @export
 list_vars <- function(dataframe) {
     dataframe_name <- dataframe
-    dataframe <- eval(parse(text = dataframe_name))
+    tryCatch(dataframe <- eval(
+        parse(text = dataframe_name)),
+        error = function(e){
+            data(list = dataframe_name)
+            print("These dataframes needed to be loaded with data.")
+            print("We have removed them from the global environment.")
+            print("If you need this dataframe, use data() with the dataframe inside.")
+            })
 
     # Trycatch to see if we can coerce to data frame
     tryCatch(dataframe <- data.frame(dataframe), error = function(e){})

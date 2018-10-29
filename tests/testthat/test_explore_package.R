@@ -17,3 +17,8 @@ test_that("explore_packages returns no NAs", {
 test_that("explore_packages accepts pkgs as string or not", {
     expect_equal(explore_package(datasets), explore_package("datasets"))
 })
+
+# Test that dataframes that require data() command works
+test_that("explore_packages works with dataframes that need data()", {
+    expect_equal(class(explore_package(bcp)), "data.frame")
+})
