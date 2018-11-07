@@ -25,7 +25,6 @@ RemoteURL: https://github.com/VectorPosse/datafinder
 Suggests: testthat,
     knitr,
     rmarkdown,
-    mosaic,
     MASS
 VignetteBuilder: knitr
 Encoding: UTF-8
